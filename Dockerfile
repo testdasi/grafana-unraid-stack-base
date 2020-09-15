@@ -5,9 +5,6 @@ FROM ${FRM}:${TAG}
 ARG FRM
 ARG TAG
 
-COPY ./entrypoint.sh /
-ENTRYPOINT ["/entrypoint.sh"]
-
 COPY ./install.sh /
 RUN /bin/bash /install.sh \
     && rm -f /install.sh
