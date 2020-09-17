@@ -15,7 +15,7 @@ LOKI_RELEASE=$(curl -sX GET "https://api.github.com/repos/grafana/loki/releases/
 LOKI_VER=${LOKI_RELEASE#v} \
     && cd /tmp
     && curl -O -L "https://github.com/grafana/loki/releases/download/v${LOKI_VER}/loki-linux-amd64.zip" \
-	&& curl -O -L "https://github.com/grafana/loki/releases/download/v${LOKI_VER}/promtail-linux-amd64.zip" \
+    && curl -O -L "https://github.com/grafana/loki/releases/download/v${LOKI_VER}/promtail-linux-amd64.zip" \
     && unzip "loki-linux-amd64.zip" \
     && chmod a+x "loki-linux-amd64" \
     && mv loki-linux-amd64 /usr/sbin \
