@@ -18,7 +18,7 @@ apt-get -y update \
 # install loki
 LOKI_RELEASE=$(curl -sX GET "https://api.github.com/repos/grafana/loki/releases/latest" | jq -r .tag_name)
 LOKI_VER=${LOKI_RELEASE#v} \
-    && cd /tmp
+    && cd /tmp \
     && curl -O -L "https://github.com/grafana/loki/releases/download/v${LOKI_VER}/loki-linux-amd64.zip" \
     && curl -O -L "https://github.com/grafana/loki/releases/download/v${LOKI_VER}/promtail-linux-amd64.zip" \
     && unzip "loki-linux-amd64.zip" \
