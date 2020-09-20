@@ -15,7 +15,7 @@ echo "deb https://repos.influxdata.com/debian buster stable" | tee /etc/apt/sour
 apt-get -y update \
     && apt-get -y install grafana telegraf influxdb hddtemp
 
-# install loki
+# install loki and promtail
 LOKI_RELEASE=$(curl -sX GET "https://api.github.com/repos/grafana/loki/releases/latest" | jq -r .tag_name)
 LOKI_VER=${LOKI_RELEASE#v} \
     && cd /tmp \
@@ -30,3 +30,9 @@ LOKI_VER=${LOKI_RELEASE#v} \
     && mv promtail-linux-amd64 /usr/sbin/promtail \
     && rm -f promtail-linux-amd64 \
     && echo "$(date "+%d.%m.%Y %T") Added loki and promtail binary release ${LOKI_RELEASE}" >> /build_date.info
+
+# clean up
+apt-get -y autoremove \
+    && apt-get -y autoclean \
+    && apt-get -y clean \
+    && rm -fr /tmp/* /var/tmp/* /var/lib/apt/lists/*
