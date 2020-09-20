@@ -23,10 +23,10 @@ LOKI_VER=${LOKI_RELEASE#v} \
     && curl -O -L "https://github.com/grafana/loki/releases/download/v${LOKI_VER}/promtail-linux-amd64.zip" \
     && unzip "loki-linux-amd64.zip" \
     && chmod a+x "loki-linux-amd64" \
-    && mv loki-linux-amd64 /usr/sbin \
+    && mv loki-linux-amd64 /usr/sbin/loki \
     && rm -f loki-linux-amd64.zip \
     && unzip "promtail-linux-amd64.zip" \
     && chmod a+x "promtail-linux-amd64" \
-    && mv promtail-linux-amd64 /usr/sbin \
+    && mv promtail-linux-amd64 /usr/sbin/promtail \
     && rm -f promtail-linux-amd64 \
     && echo "$(date "+%d.%m.%Y %T") Added loki and promtail binary release ${LOKI_RELEASE}" >> /build_date.info
