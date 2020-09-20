@@ -1,2 +1,2 @@
-# grafana-unraid-stack
-Meet Gus!
+# grafana-unraid-stack-base
+Base image for grafana-unraid-stack
