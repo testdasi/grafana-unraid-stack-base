@@ -31,6 +31,14 @@ LOKI_VER=${LOKI_RELEASE#v} \
     && rm -f promtail-linux-amd64 \
     && echo "$(date "+%d.%m.%Y %T") Added loki and promtail binary release ${LOKI_RELEASE}" >> /build_date.info
 
+# clean config
+rm -f /etc/default/grafana-server \
+    && touch /etc/default/grafana-server
+rm -f /etc/hddtemp.db
+rm -rf /etc/telegraf
+rm -rf /etc/influxdb
+rm -rf /etc/grafana
+
 # clean up
 apt-get -y autoremove \
     && apt-get -y autoclean \
