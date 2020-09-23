@@ -2,7 +2,7 @@
 
 # install more packages
 apt-get -y update \
-    && apt-get -y install screen wget apt-transport-https software-properties-common gnupg gnupg2 gnupg1 lm-sensors smartmontools ipmitool curl unzip jq
+    && apt-get -y install wget apt-transport-https software-properties-common gnupg gnupg2 gnupg1 lm-sensors smartmontools ipmitool curl unzip jq
 
 # add grafana repo
 wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
