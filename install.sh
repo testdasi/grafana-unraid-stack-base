@@ -1,5 +1,14 @@
 #!/bin/bash
 
+## Fix locales and tzdata to prevent tzdata stopping installation ##
+apt-get -y update
+apt -y install locales tzdata
+locale-gen 'en_GB.UTF-8' \
+    && dpkg-reconfigure --frontend=noninteractive locales
+ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
+    && echo 'Europe/London' > /etc/timezone \
+    && dpkg-reconfigure --frontend=noninteractive tzdata
+
 # install more packages
 apt-get -y update \
     && apt-get -y install wget apt-transport-https software-properties-common gnupg gnupg2 gnupg1 lm-sensors smartmontools ipmitool curl unzip jq
