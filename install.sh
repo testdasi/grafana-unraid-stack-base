@@ -11,6 +11,14 @@ echo "deb https://packages.grafana.com/oss/deb stable main" | tee -a /etc/apt/so
 wget -qO- https://repos.influxdata.com/influxdb.key | apt-key add -
 echo "deb https://repos.influxdata.com/debian buster stable" | tee /etc/apt/sources.list.d/influxdb.list
 
+## Fix locales and tzdata to prevent tzdata stopping installation ##
+apt -y install locales tzdata
+locale-gen 'en_GB.UTF-8' \
+    && dpkg-reconfigure --frontend=noninteractive locales
+ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
+    && echo 'Europe/London' > /etc/timezone \
+    && dpkg-reconfigure --frontend=noninteractive tzdata
+
 # install grafana telegraf influxdb hddtemp
 apt-get -y update \
     && apt-get -y install grafana telegraf influxdb hddtemp
