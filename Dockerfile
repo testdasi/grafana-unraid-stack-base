@@ -19,6 +19,11 @@ RUN rm -Rf /testdasi \
     && mv /temp/static-ubuntu-main /testdasi \
     && rm -Rf /testdasi/deprecated
 
+# add correct key to verify package repository signature
+RUN apt -y update && apt -y install gnupg gnupg1 gnupg2
+RUN curl -sOL "https://repos.influxdata.com/influxdata-archive.key"
+RUN apt-key add influxdata-archive.key
+
 ## execute execute execute ##
 RUN /bin/bash /testdasi/scripts-install/install-grafana-unraid-stack-base.sh
 
